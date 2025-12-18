@@ -22,28 +22,7 @@ class BookUpdate(BaseModel):
 app = FastAPI(title="Virtual Library Manager API")
 
 # 使用字典模擬資料庫儲存： {isbn: Book_object}
-db: Dict[str, Book] = {
-    "978-0321765723": Book(
-        title="The Lord of the Rings", 
-        author="J.R.R. Tolkien", 
-        isbn="978-0321765723", 
-        category="文學", 
-        url="example.com/lotr"
-    ),
-    "978-0321990497": Book(
-        title="Clean Code", 
-        author="Robert C. Martin", 
-        isbn="978-0321990497", 
-        category="科學", 
-        url="example.com/cleancode"
-    ),
-    "978-1503251700": Book(
-        title="Pride and Prejudice", 
-        author="Jane Austen", 
-        isbn="978-1503251700", 
-        category="文學", 
-    ),
-}
+db: Dict[str, Book] = {}
 
 # --- CRUD API 接口 ---
 
@@ -129,4 +108,3 @@ def fetch_external_book_info(isbn: str):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"外部 API 連線錯誤: {str(e)}")
-    
